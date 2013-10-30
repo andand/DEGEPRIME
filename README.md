@@ -64,10 +64,12 @@ PrimerMatching:		Number of sequences that match the selected primer.
 PrimerSeq:		Sequence of the selected degenerate primer.
 
 
-For more help and additional optional parameters for the scripts: 
+For more help and additional optional parameters for the scripts, use -h: 
 
  perl DegePrime.pl -h
+
  perl TrimAlignment.pl -h
+
  perl MakeRdpTaxonomy.pl -h
 
 ===============
