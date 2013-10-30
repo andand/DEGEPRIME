@@ -8,7 +8,7 @@ Content
 1. Overview
 ===========DegePrime
 
-DegePrime is a program that for each position in a multiple sequence alignment finds a degenerate oligomer, of defined length and degeneracy, of as high coverage as possible (matching as many of the sequences as possible in that position). It hence attempts to solve the "maximum coverage degenerate primer design problem" (MC-DPD), and uses a novel heuristic for this. The main script is degeprime.pl that performs the actual oligomer selection procedure. The script TrimAlignment.pl is used to prepare the alignment file and has to be run prior to DegePrime.pl. As an option, the DegePrime can output primer coverage among taxonomic groups of sequences, if a file with taxonomic information for the sequences is supplied. Such a file can be generated from an RDP (http://rdp.cme.msu.edu/) file in genbank format by the script MakeRdpTaxonomy.pl.
+DegePrime is a program that for each position in a multiple sequence alignment finds a degenerate oligomer, of defined length and degeneracy, of as high coverage as possible (matching as many of the sequences as possible in that position). It hence attempts to solve the "maximum coverage degenerate primer design problem" (MC-DPD), and uses a novel heuristic for this. The main script is DegePrime.pl that performs the actual oligomer selection procedure. The script TrimAlignment.pl is used to prepare the alignment file and has to be run prior to DegePrime.pl. As an option, DegePrime.pl can output primer coverage among taxonomic groups of sequences, if a file with taxonomic information for the sequences is provided. Such a file can be generated from an RDP (http://rdp.cme.msu.edu/) file in genbank format by the script MakeRdpTaxonomy.pl.
 
 2. Usage
 ===============
@@ -20,7 +20,7 @@ Input files
 
 Running
 
-"Spare me the details":
+"Spare me the details...":
 
  perl TrimAlignment.pl -i align_file -min cutoff -o trimmed_align_file
 
@@ -35,7 +35,7 @@ Running
 
 First, the alignment file has to be prepared by the script TrimAlignment.pl. There are two reasons for this. First, your alignment may include many positions with gaps in many of the sequences, especially if the alignment is based on a large number of sequences. Since DegePrime.pl will, in each window, only use those sequences that do not have gaps, this will be troublesome. With TrimAlignment.pl you can remove those columns in your alignment that are not occupied (have a nucleotide) in at least a defined proportion of sequences, set by the optional parameter -min :
 
- perl TrimAlignment.pl -i align_file -min cutoff > trimmed_align_file
+ perl TrimAlignment.pl -i align_file -min cutoff -o trimmed_align_file
 
 where (0 =< cutoff =< 1). Using -min 1 will hence only output columns that have a nucleotide in every sequence. If you don't specify -min the value 0 is used, so:
 
@@ -50,10 +50,6 @@ Now we are ready for finding degenerate primers (using the output file from Trim
 
 -d should be a possible degeneracy, i.e. 1, 2, 3, 4, 6, 8, 9, 12, and so forth (or more generally a number > 0 that can be expressed as 2^i * 3^j, where i and j are integers or 0).
 
-There are some additional optional parameters. To view them: 
-
- perl DegePrime.pl -h
-
 
 The output_file will be a tab-separated text file that includes the following columns:
 
@@ -66,5 +62,12 @@ Entropy: 		Entropy of the window, calculated as -Σ Pi log2(Pi), where Pi is the
 PrimerDeg:		Degeneracy of the selected primer.
 PrimerMatching:		Number of sequences that match the selected primer.
 PrimerSeq:		Sequence of the selected degenerate primer.
+
+
+For more help and additional optional parameters for the scripts: 
+
+ perl DegePrime.pl -h
+ perl TrimAlignment.pl -h
+ perl MakeRdpTaxonomy.pl -h
 
 ===============
