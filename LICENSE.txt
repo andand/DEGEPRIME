@@ -1,6 +1,6 @@
 For DegePrime
 ###############################################################################
-Copyright (C) 2008-2012 Anders Andersson (anders.andersson@scilifelab.se)
+Copyright (C) 2008-2013 Anders Andersson (anders.andersson@scilifelab.se)
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License
