@@ -26,9 +26,9 @@ Running
 
  (-min 0.9 usually works well)
 
- perl DegePrime.pl -i trimmed_align_file -d degeneracy -w windowsize -o output_file
+ perl DegePrime.pl -i trimmed_align_file -d degeneracy -l primer_length -o output_file
 
- (e.g. -d 12 -w 18)
+ (e.g. -d 12 -l 18)
 
 
 "Tell me more!":
@@ -46,7 +46,7 @@ will output the same alignment as the original. There is however one important d
 
 Now we are ready for finding degenerate primers (using the output file from TrimAlignment.pl):
 
- perl DegePrime.pl -i trimmed_align_file -d degeneracy -w windowsize -o output_file
+ perl DegePrime.pl -i trimmed_align_file -d degeneracy -l primer_length -o output_file
 
 -d should be a possible degeneracy, i.e. 1, 2, 3, 4, 6, 8, 9, 12, and so forth (or more generally a number > 0 that can be expressed as 2^i * 3^j, where i and j are integers or 0).
 
@@ -55,9 +55,9 @@ The output_file will be a tab-separated text file that includes the following co
 
 Pos	TotalSeq	UniqueMers	Entropy	PrimerDeg	PrimerMatching	PrimerSeq
 
-Pos: 			Position of the (first base in the) window in the trimmed_alig_file (starting at 0).
-TotalSeq:		Number of sequences that span this position (including sequences with internal gaps in this region).
-UniqueMers:		Number of unique oligomer sequences (without in/dels) in the window position.
+Pos: 			Position of the (first base in the) window in the trimmed_align_file (starting at 0).
+TotalSeq:		Number of sequences that span this window (including sequences with internal gaps in this region).
+UniqueMers:		Number of unique oligomer sequences (without in/dels) in the window.
 Entropy: 		Entropy of the window, calculated as -Σ Pi log2(Pi), where Pi is the frequency of oligomer i.  
 PrimerDeg:		Degeneracy of the selected primer.
 PrimerMatching:		Number of sequences that match the selected primer.
