@@ -8,16 +8,16 @@ DegePrime.pl - Finds degenerate oligomers of as high coverage as possible at eve
 
 =head1 USAGE
 
-perl degeprime.pl -i ALIGNMENT_FILE -w WINDOW_SIZE -d MAX_DEGENERACY -o OUTPUT_FILE [-depth MIN_DEPTH] [-skip SKIP_LENGTH] [-iter NUMBER_ITERATIONS] [-taxfile TAXONOMY_FILE] [-taxlevel TAXONOMY_LEVEL] [-h]
+perl degeprime.pl -i ALIGNMENT_FILE -l OLIGOMER_LENGTH -d MAX_DEGENERACY -o OUTPUT_FILE [-depth MIN_DEPTH] [-skip SKIP_LENGTH] [-iter NUMBER_ITERATIONS] [-taxfile TAXONOMY_FILE] [-taxlevel TAXONOMY_LEVEL] [-h]
 
 
 =head1 POSITIONAL ARGUMENTS
 
 -i ALIGNMENT_FILE			Specify alignment file. This has some special requirements, see README
 
--w WINDOW_SIZE				Specify window size (an integer)
+-l OLIGOMER_LENGTH			Specify oligomer length (an integer)
 
--d MAX_DEGENERACY			Specify maximum degeneracy of oliomer (an integer)
+-d MAX_DEGENERACY			Specify maximum degeneracy of oligomer (an integer)
 
 -o OUTPUT_FILE				Specify output file name (overwrites existing file with same name)
 
@@ -56,7 +56,7 @@ $taxonomy_level = undef;
 
 ######################
 
-&GetOptions('i=s' => \$aligned_short_file, 'w=i' => \$window_length, 'd=i' => \$max_deg, 'o=s' => \$outfile, 'depth=i' => \$min_depth, 'skip=i' => \$skip_length, 'iter=i' => \$number_iteratons, 'taxfile=s' => \$taxonomy_file, 'taxlevel=i' => \$taxonomy_level, 'h!' => \$help);
+&GetOptions('i=s' => \$aligned_short_file, 'l=i' => \$window_length, 'd=i' => \$max_deg, 'o=s' => \$outfile, 'depth=i' => \$min_depth, 'skip=i' => \$skip_length, 'iter=i' => \$number_iteratons, 'taxfile=s' => \$taxonomy_file, 'taxlevel=i' => \$taxonomy_level, 'h!' => \$help);
 if (!$aligned_short_file or !$window_length or !$max_deg or !$outfile or $help) {
 	system ('perldoc', $0);
 	exit;
@@ -75,7 +75,7 @@ if ($taxonomy_level) {
 		exit;
 	}
 	if ($taxonomy_level < 1) { 
-		print "\n  Error: taxonomy level should be a positive integer. \n"; 
+		print "\n  Error: TAXONOMY_LEVEL should be a positive integer. \n"; 
 		print "\n  perl degeprime.pl -h for more help \n\n";
 		exit;
 	}
