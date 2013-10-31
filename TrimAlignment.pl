@@ -138,6 +138,9 @@ sub get_rich_positions {
 
 	@comp_pos = ();
 	for ($i = 0; $i < @counts; $i++) {
+		if (!defined $counts[$i]) {
+			$counts[$i] = 0;
+		}
 		if (($counts[$i]/$total) >= $cutoff) { 
 			push(@comp_pos, $i);
 		}
