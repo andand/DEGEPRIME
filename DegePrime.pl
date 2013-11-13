@@ -114,7 +114,7 @@ if ($taxonomy_level) {
 print"Finnished DegePrime run succesfully\n\n";
 
 $totaltime = time - $totaltime;
-#print"Total time:\t$totaltime\n";
+print"Run time:\t$totaltime\n";
 
 #############
 
@@ -161,7 +161,7 @@ sub calc_coverage {
 			#&hyden($pos);
 			$time1 = time;
 			$time = ($time1 - $time0);
-			print OUT "\t$time";
+			#print OUT "\t$time";
 			print OUT "\n";	
 		}
 	}
